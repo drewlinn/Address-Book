@@ -5,10 +5,11 @@ function Contact(first, last) {
   this.addresses = [];
   }
 
-  function Address(street, city, state) {
+  function Address(street, city, state, type) {
     this.street = street;
     this.city = city;
     this.state = state;
+    this.type = type;
   }
 
 Contact.prototype.fullName = function() {
@@ -16,7 +17,7 @@ Contact.prototype.fullName = function() {
 }
 
 Address.prototype.fullAddress = function() {
-  return this.street + ", " + this.city + ", " + this.state;
+  return this.street + ", " + this.city + ", " + this.state + " (" + this.type + ")";
 }
 
 function resetFields()  {
@@ -25,6 +26,7 @@ function resetFields()  {
     $("input.new-street").val("");
     $("input.new-city").val("");
     $("input.new-state").val("");
+    //$("#addressType").val();
 }
 
 //user interface logic
@@ -44,6 +46,15 @@ $(document).ready(function() {
         '<label for="new-state">State</label>' +
         '<input type="text" class="form-control new-state">' +
       '</div>' +
+      '<div class="new-address-type">' +
+        '<p><strong>Address Type</strong></p>' +
+        '<select class="form-control" id="addressType">' +
+          '<option value="Residential">Residential</option>' +
+          '<option value="Business">Business</option>' +
+          '<option value ="Shipping">Shipping</option>' +
+        '</select>' +
+        '<br>' +
+      '</div>' +
     '</div>');
   });
 
@@ -57,8 +68,9 @@ $(document).ready(function() {
     $(".new-addresses").each(function() {
       var inputtedStreet = $(this).find("input.new-street").val();
       var inputtedCity = $(this).find("input.new-city").val();
-      var inputtedState = $(this).find("input.new-state").val();      
-      var newAddress = new Address(inputtedStreet, inputtedCity, inputtedState)
+      var inputtedState = $(this).find("input.new-state").val();
+      var inputtedType = $(this).find("#addressType").val();
+      var newAddress = new Address(inputtedStreet, inputtedCity, inputtedState, inputtedType)
       newContact.addresses.push(newAddress);
     });
 
