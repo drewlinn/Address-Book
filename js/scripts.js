@@ -9,7 +9,7 @@ function Contact(first, last) {
     this.street = street;
     this.city = city;
     this.state = state;
-    this.type = type;
+    this.addressType = type;
   }
 
 Contact.prototype.fullName = function() {
@@ -17,7 +17,7 @@ Contact.prototype.fullName = function() {
 }
 
 Address.prototype.fullAddress = function() {
-  return this.street + ", " + this.city + ", " + this.state + " (" + this.type + ")";
+  return this.street + ", " + this.city + ", " + this.state + " (" + this.addressType + ")";
 }
 
 function resetFields()  {
